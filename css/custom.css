@@ -327,18 +327,42 @@ body{
 	background: linear-gradient(90.01deg, var(--accent-secondary-color) 0.26%, var(--accent-color) 99.99%);
 }
 
-.preloader{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1000;
-	background: linear-gradient(90.01deg, var(--accent-secondary-color) 0.26%, var(--accent-color) 99.99%);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: linear-gradient(90.01deg, var(--accent-secondary-color) 0.26%, var(--accent-color) 99.99%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* Icon only */
+.preloader img {
+    width: 450px;       /* default size */
+    height: 130px;
+    transition: all 0.3s ease; /* smooth if you animate size */
+	animation: pulseGlow 1.5s infinite;
+}
+/* Pulsate + glow animation */
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #ffffff);
+    }
+    50% {
+        transform: scale(1.2); /* grows */
+        filter: drop-shadow(0 0 20px #ffffff); /* stronger glow */
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #ffffff);
+    }
+}
+
 
 .loading-container,
 .loading{
@@ -7073,21 +7097,34 @@ header.main-header .header-sticky.active{
 /* 1. Make the navbar sticky with side spacing */
 .main-header {
     position: fixed !important;
-    top: -32px; /* Gives space ABOVE the header */
-    left: 0%;  /* Space on the left */
-    right: 0%; /* Space on the right */
-    width: 100%; /* Centers it with space on both sides */
+    top: -32px;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 9999;
-    box-sizing: border-box;
 }
 
-/* 2. The background container of your nav */
 .header-sticky {
-    background: #ffffff !important; 
-    border-radius: 35px; /* Keeps the rounded design in your screenshot */
-    box-shadow: 0 15px 20px rgba(16, 16, 16, 0.1); /* Adds depth */
-    padding: 10px 20px;
+    background: #ffffff !important;
+    border-radius: 35px;
+    box-shadow: 0 15px 20px rgba(16, 16, 16, 0.1);
+
+    min-height: 120px;          /* 👈 controls height safely */
+    padding: 0 22px;            /* horizontal only */
+    
+    display: flex;              /* 👈 key */
+    align-items: center;        /* 👈 vertical centering */
 }
+
+
+.header-sticky .navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;        /* 👈 centers text/logo */
+}
+
+
 
 /* 3. FIX THE OVERLAP (The most important part) */
 /* This pushes your whole website down so the first section starts AFTER the header */
@@ -7119,3 +7156,30 @@ body {
     transform: scale(1.1); /* Slightly grows when you hover over it */
     color: #fff;
 }
+/* LOGO SIZE ONLY — DOES NOT AFFECT HEADER HEIGHT */
+.site-logo {
+    height: 125px;        /* 👈 increase/decrease freely */
+    width: auto;
+    object-fit: contain;
+}
+
+/* LOCK HEADER HEIGHT */
+.main-header,
+.header-sticky,
+.navbar {
+    height: 80px;        /* 👈 fixed header height */
+}
+
+/* CENTER LOGO WITHOUT EXPANDING HEADER */
+.navbar-brand {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.footer-logo img {
+    height: 135px;
+    width: auto;
+    max-width: 100%;
+    transform: translateY(-60px); /* 👈 move UP */
+}
+
