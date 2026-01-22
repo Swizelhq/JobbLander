@@ -7109,11 +7109,11 @@ header.main-header .header-sticky.active{
     border-radius: 35px;
     box-shadow: 0 15px 20px rgba(16, 16, 16, 0.1);
 
-    min-height: 120px;          /* 👈 controls height safely */
+    min-height: 120px;          /* ðŸ‘ˆ controls height safely */
     padding: 0 22px;            /* horizontal only */
     
-    display: flex;              /* 👈 key */
-    align-items: center;        /* 👈 vertical centering */
+    display: flex;              /* ðŸ‘ˆ key */
+    align-items: center;        /* ðŸ‘ˆ vertical centering */
 }
 
 
@@ -7121,7 +7121,7 @@ header.main-header .header-sticky.active{
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;        /* 👈 centers text/logo */
+    align-items: center;        /* ðŸ‘ˆ centers text/logo */
 }
 
 
@@ -7156,9 +7156,9 @@ body {
     transform: scale(1.1); /* Slightly grows when you hover over it */
     color: #fff;
 }
-/* LOGO SIZE ONLY — DOES NOT AFFECT HEADER HEIGHT */
+/* LOGO SIZE ONLY â€” DOES NOT AFFECT HEADER HEIGHT */
 .site-logo {
-    height: 125px;        /* 👈 increase/decrease freely */
+    height: 125px;        /* ðŸ‘ˆ increase/decrease freely */
     width: auto;
     object-fit: contain;
 }
@@ -7167,7 +7167,7 @@ body {
 .main-header,
 .header-sticky,
 .navbar {
-    height: 80px;        /* 👈 fixed header height */
+    height: 80px;        /* ðŸ‘ˆ fixed header height */
 }
 
 /* CENTER LOGO WITHOUT EXPANDING HEADER */
@@ -7180,36 +7180,51 @@ body {
     height: 135px;
     width: auto;
     max-width: 100%;
-    transform: translateY(-60px); /* 👈 move UP */
+    transform: translateY(-60px); /* ðŸ‘ˆ move UP */
 }
+
 /* ============================================================
-   JOBBLANDER MOBILE MENU: GLOSSY & TRANSPARENT FIX
+   JOBBLANDER MOBILE MENU: FULL GLOSSY & POSITIONING FIX
    ============================================================ */
    @media (max-width: 991px) {
-    /* 1. The Background: Transparent Glossy with Purple/Pink Hue */
+    
+    /* 1. Header Container Fix - Ensures menu can 'hang' out of the header */
+    .main-header, .header-sticky {
+        overflow: visible !important;
+        position: relative !important;
+    }
+
+    /* 2. The Background: Fixed Position & Glossy Hue */
     .navbar-collapse {
-        background: linear-gradient(135deg, rgba(15, 15, 15, 0.85) 0%, rgba(45, 10, 60, 0.85) 100%) !important;
+        /* POSITIONAL FIXES: Forces menu to sit on top of the hero image */
+        position: absolute !important;   
+        top: 100% !important;            
+        left: 0 !important;              
+        right: 0 !important;             
+        z-index: 9999 !important;        
+
+        /* YOUR GLOSSY STYLE */
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(45, 10, 60, 0.98) 100%) !important;
         backdrop-filter: blur(15px) !important; 
         -webkit-backdrop-filter: blur(15px) !important;
         border: 1px solid rgba(255, 0, 204, 0.3) !important; 
-        border-radius: 12px;
+        border-radius: 0 0 20px 20px; /* Rounded bottom for app-like look */
         padding: 25px !important;
-        margin-top: 15px;
-        box-shadow: 0 15px 40px rgba(180, 0, 255, 0.4);
-        z-index: 9999;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        margin-top: 0 !important; /* Adjusted to sit flush with header */
     }
 
-    /* 2. Main Links: High Visibility White */
+    /* 3. Main Links: High Visibility White */
     .navbar-nav .nav-link {
         color: #ffffff !important; 
         font-size: 18px !important;
         font-weight: 600 !important;
-        padding: 12px 0 !important;
+        padding: 15px 0 !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    /* 3. Explore Submenu: Fixed Visibility */
+    /* 4. Explore Submenu: Fixed Visibility */
     .nav-item.submenu ul {
         display: block !important; 
         position: relative !important;
@@ -7224,33 +7239,44 @@ body {
         color: rgba(255, 255, 255, 0.8) !important;
         font-size: 15px !important;
         padding: 8px 15px !important;
+        border: none !important;
     }
 
-    /* 4. Get Started Button: Pink to Purple Pop */
+    /* 5. Get Started Button: Pink to Purple Pop */
+    .header-btn {
+        margin-top: 10px;
+        text-align: center;
+    }
+
     .header-btn .btn-default {
         background: linear-gradient(90deg, #ff00cc 0%, #7000ff 100%) !important;
         color: #ffffff !important;
         width: 100%;
         display: block;
-        text-align: center;
         padding: 16px !important;
         border-radius: 50px !important;
         font-weight: 700 !important;
         box-shadow: 0 8px 20px rgba(255, 0, 204, 0.5) !important;
-        margin-top: 20px !important;
         border: none !important;
     }
 
-    /* 5. Hamburger Icon: Pink Glow */
+    /* 6. Logo and Toggler Alignment */
+    .site-logo {
+        max-width: 140px !important;
+        height: auto;
+    }
+
     .navbar-toggler {
         border: 2px solid #ff00cc !important;
         background: rgba(255, 0, 204, 0.1) !important;
+        padding: 5px;
     }
 
     .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff00cc' stroke-width='3' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
     }
 }
+
 /* Modal Overlay */
 .modal {
     display: none;
@@ -7304,3 +7330,98 @@ body {
     background: linear-gradient(#d946ef, #8b5cf6);
     border-radius: 10px;
 }
+/* Desktop Logo (Default) */
+.site-logo {
+    height: auto;
+    max-width: 200px; /* Or whatever your preferred desktop size is */
+}
+@media (max-width: 991px) {
+    /* This forces the menu to have a background even if other styles fight it */
+    .navbar-collapse.collapse.show {
+        background-color: #0d0d0d !important;
+        display: block !important;
+        position: absolute !important;
+        top: 100% !important;
+        width: 100% !important;
+        z-index: 99999 !important;
+        padding: 20px !important;
+    }
+}
+/* ============================= */
+/* FIX: White space above navbar (mobile only) */
+/* ============================= */
+
+@media (max-width: 991px) {
+
+    /* Remove top margin on header */
+    header.main-header {
+        margin-top: 0 !important;
+    }
+
+    /* Force header to stick to top */
+    header.main-header .header-sticky {
+        top: 0;
+    }
+
+    /* Remove rounded floating effect on mobile */
+    .bg-section {
+        border-radius: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Ensure body starts flush */
+    body {
+        padding-top: 0 !important;
+    }
+}
+/* ============================= */
+/* Mobile: sticky header + spacing under it */
+/* ============================= */
+@media (max-width: 991px) {
+
+	/* Make the header sticky on mobile */
+	header.main-header {
+	  position: fixed !important;
+	  top: 0 !important;
+	  left: 0;
+	  right: 0;
+	  width: 100%;
+	  margin: 0 !important;
+	  z-index: 9999;
+	}
+  
+	/* Keep sticky container flush */
+	header.main-header .header-sticky {
+	  position: relative;
+	  top: 0 !important;
+	}
+  
+	/* Add space below the fixed header so hero starts below it */
+	body {
+	  padding-top: 120px !important;  /* 👈 adjust if needed */
+	}
+  
+	/* Small extra gap between header and hero */
+	.hero {
+	  margin-top: 10px !important;
+	}
+  }
+  /* ============================= */
+/* Mobile: increase logo size */
+/* ============================= */
+@media (max-width: 991px) {
+
+	/* Increase logo size */
+	.navbar-brand .site-logo,
+	.navbar-brand img {
+	  max-width: 210px !important;   /* 👈 THIS is the key */
+	  height: auto !important;
+	}
+  
+	/* Keep navbar height balanced */
+	.navbar-brand {
+	  padding-top: 6px;
+	  padding-bottom: 6px;
+	}
+  }
+  
